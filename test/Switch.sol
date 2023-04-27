@@ -1,17 +1,32 @@
 pragma solidity 0.8.11;
 
-import "src/Switch.sol";
+import "src/levels/Switch/Switch.sol";
+import "src/levels/Switch/SwitchFactory.sol";
 import "forge-std/Test.sol";
 
 contract SwitchAttackTest is Test {
-
-    Switch public target;
+    address public dummyPlayerAddress = 0x30d2554d48037F642f095F24098319481A6D6642;
+    SwitchFactory public factory;
+    Switch public instance;
 
     function setUp() public {
-       target = new Switch();
+       factory = SwitchFactory(new SwitchFactory());
+       instance = Switch(factory.createInstance(dummyPlayerAddress));
     }
 
-    function test_Attack() public {
+    function testfail_ShouldRevertIfPlayerAttackWrong() public {
+         vm.startPrank(dummyPlayerAddress);
+         vm.expectRevert();
+         instance.flipSwitch("0x00");
+    }
+
+    function test_ShouldNotBeImmediatelySolvable() public {
+        assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), false);
+    }
+    
+    function test_ShouldSllowTheUserToSolveTheLevel() public {
+        vm.startPrank(dummyPlayerAddress);
+
         // Compute selectors
         bytes4 flipSelector = bytes4(keccak256("flipSwitch(bytes)"));
         bytes4 onSelector = bytes4(keccak256("turnSwitchOn()"));
@@ -28,9 +43,10 @@ contract SwitchAttackTest is Test {
         );
                 
         // Attack through low level call
-        address(target).call(calldata_);
+        (bool result,) = address(instance).call(calldata_);
+        require(result);
 
-        assertEq(target.switchOn(), true);
+        assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), true);
     }
 
 }

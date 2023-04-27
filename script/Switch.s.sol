@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "src/Switch.sol"; 
+import "src/levels/Switch/Switch.sol"; 
 import "forge-std/Script.sol";
 
 contract CounterScript is Script {
@@ -28,8 +28,8 @@ contract CounterScript is Script {
         vm.startBroadcast();
 
         // Attack through low level call
-        address(target).call(calldata_);
-
+        (bool result,) = address(target).call(calldata_);
+        require(result);
         vm.stopBroadcast();
     }
 }

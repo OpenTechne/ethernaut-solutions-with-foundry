@@ -5,7 +5,7 @@ Fill create and .env file following .env_example and fill it with your api keys
 
 ## To test attacks
 ```
-forge test --match-path test/Switch.sol 
+forge test --match-path test/<level name>.sol 
 ```
 
 ## To attack a real contract
