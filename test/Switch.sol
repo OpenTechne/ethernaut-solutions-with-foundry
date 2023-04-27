@@ -14,7 +14,7 @@ contract SwitchAttackTest is Test {
        instance = Switch(factory.createInstance(dummyPlayerAddress));
     }
 
-    function testfail_ShouldRevertIfPlayerAttackWrong() public {
+    function testfail_ShouldRevertIfPlayerAttackIsWrong() public {
          vm.startPrank(dummyPlayerAddress);
          vm.expectRevert();
          instance.flipSwitch("0x00");
@@ -24,7 +24,7 @@ contract SwitchAttackTest is Test {
         assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), false);
     }
     
-    function test_ShouldSllowTheUserToSolveTheLevel() public {
+    function test_ShouldAllowThePlayerToSolveTheLevel() public {
         vm.startPrank(dummyPlayerAddress);
 
         // Compute selectors
