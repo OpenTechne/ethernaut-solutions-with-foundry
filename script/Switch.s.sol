@@ -8,7 +8,7 @@ contract CounterScript is Script {
     function setUp() public {}
 
     function run() public {
-        address target = address(0x0000000000000000000000000000000000000000); // Insert level target address
+        address target = address(0x0000000000000000000000000000000000000000); // Insert instance target address
                                  
         // Compute selectors
         bytes4 flipSelector = bytes4(keccak256("flipSwitch(bytes)"));

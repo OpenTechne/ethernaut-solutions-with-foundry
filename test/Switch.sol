@@ -10,20 +10,20 @@ contract SwitchAttackTest is Test {
     Switch public instance;
 
     function setUp() public {
-       factory = SwitchFactory(new SwitchFactory());
+       factory = new SwitchFactory();
        instance = Switch(factory.createInstance(dummyPlayerAddress));
-    }
-
-    function testfail_ShouldRevertIfPlayerAttackIsWrong() public {
-         vm.startPrank(dummyPlayerAddress);
-         vm.expectRevert();
-         instance.flipSwitch("0x00");
     }
 
     function test_ShouldNotBeImmediatelySolvable() public {
         assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), false);
     }
     
+    function testfail_ShouldRevertIfPlayerAttackIsWrong() public {
+         vm.startPrank(dummyPlayerAddress);
+         vm.expectRevert();
+         instance.flipSwitch("0x00");
+    }
+
     function test_ShouldAllowThePlayerToSolveTheLevel() public {
         vm.startPrank(dummyPlayerAddress);
 
