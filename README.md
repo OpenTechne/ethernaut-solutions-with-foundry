@@ -1,7 +1,7 @@
 # OpenZeppelin ethernaut solutions with foundry 
 
 ## Setup
-Fill create and .env file following .env_example and fill it with your api keys
+Create an .env file following .env_example and fill it with your api keys
 
 ## To test attacks
 ```
