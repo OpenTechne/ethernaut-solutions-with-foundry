@@ -1,0 +1,21 @@
+# OpenZeppelin ethernaut solutions with foundry 
+
+## Setup
+Fill create and .env file following .env_example and fill it with your api keys
+
+## To test attacks
+```
+forge test --match-path test/Switch.sol 
+```
+
+## To attack a real contract
+
+Be careful wen lading your private key to the environment!
+
+Insert the target contract address in `script/<level name>.s.sol`
+```
+source .env
+forge script script/<level name>.s.sol --rpc-url $<network name> --broadcast --private-key $PRIVATE_KEY
+```
+
+for network names check `[rpc_endpoints]` aliases in `foundry.toml`
