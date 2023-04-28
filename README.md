@@ -15,7 +15,7 @@ Be careful wen lading your private key to the environment!
 Insert the target contract address in `script/<level name>.s.sol`
 ```
 source .env
-forge script script/<level name>.s.sol --rpc-url $<network name> --broadcast --private-key $PRIVATE_KEY
+forge script script/<level name>.s.sol --rpc-url <network name> --broadcast --private-key $PRIVATE_KEY
 ```
 
 for network names check `[rpc_endpoints]` aliases in `foundry.toml`
