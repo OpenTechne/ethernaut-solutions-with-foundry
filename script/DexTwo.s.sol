@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import "src/levels/DexTwo/DexTwo.sol"; 
 import "forge-std/Script.sol";
 
-contract CounterScript is Script {
+contract DexTwoAttackScript is Script {
     function setUp() public {}
 
     function run() public {

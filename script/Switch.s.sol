@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import "src/levels/Switch/Switch.sol"; 
 import "forge-std/Script.sol";
 
-contract CounterScript is Script {
+contract SwitchAttackScript is Script {
     function setUp() public {}
 
     function run() public {
