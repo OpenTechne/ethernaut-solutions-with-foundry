@@ -10,7 +10,7 @@ forge test --match-path test/<level name>.sol
 
 ## To attack a real contract
 
-Be careful wen lading your private key to the environment!
+Be careful wen loading your private key to the environment!
 
 Insert the target contract address in `script/<level name>.s.sol`
 ```
