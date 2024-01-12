@@ -7,6 +7,7 @@ libs = ['lib']
 local = "${LOCALHOST_RPC_URL}"
 goerli = "${GOERLI_RPC_URL}"
 sepolia = "${SEPOLIA_RPC_URL}"
+holesky = "${HOLESKY_RPC_URL}"
 mumbai = "${MUMBAI_RPC_URL}"
 optimism_goerli = "${OPTIMISM_GOERLI_RPC_URL}"
 arbitrum_goerli = "${ARBITRUM_GOERLI_RPC_URL}"
