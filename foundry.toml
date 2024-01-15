@@ -10,6 +10,7 @@ sepolia = "${SEPOLIA_RPC_URL}"
 holesky = "${HOLESKY_RPC_URL}"
 mumbai = "${MUMBAI_RPC_URL}"
 optimism_goerli = "${OPTIMISM_GOERLI_RPC_URL}"
+optimism_sepolia = "${OPTIMISM_SEPOLIA_RPC_URL}"
 arbitrum_goerli = "${ARBITRUM_GOERLI_RPC_URL}"
 arbitrum_sepolia="${ARBITRUM_SEPOLIA_RPC_URL}"
 
