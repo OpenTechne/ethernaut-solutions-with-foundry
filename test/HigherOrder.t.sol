@@ -4,8 +4,6 @@ import "forge-std/Test.sol";
 import "src/base/ILevel.sol";
 import "./utils/Utils.sol";
 
-import {console} from "forge-std/console.sol";
-
 interface IHigherOrder {
     function commander() external returns (address);
     function treasury() external returns (uint256);
