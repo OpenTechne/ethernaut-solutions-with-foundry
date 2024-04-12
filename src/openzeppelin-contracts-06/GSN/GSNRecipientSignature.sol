@@ -41,13 +41,7 @@ contract GSNRecipientSignature is GSNRecipient {
         uint256 nonce,
         bytes memory approvalData,
         uint256
-    )
-        public
-        view
-        virtual
-        override
-        returns (uint256, bytes memory)
-    {
+    ) public view virtual override returns (uint256, bytes memory) {
         bytes memory blob = abi.encodePacked(
             relay,
             from,
@@ -66,7 +60,7 @@ contract GSNRecipientSignature is GSNRecipient {
         }
     }
 
-    function _preRelayedCall(bytes memory) internal virtual override returns (bytes32) { }
+    function _preRelayedCall(bytes memory) internal virtual override returns (bytes32) {}
 
-    function _postRelayedCall(bytes memory, bool, uint256, bytes32) internal virtual override { }
+    function _postRelayedCall(bytes memory, bool, uint256, bytes32) internal virtual override {}
 }

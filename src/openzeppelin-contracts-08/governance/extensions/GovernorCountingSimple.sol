@@ -51,11 +51,7 @@ abstract contract GovernorCountingSimple is Governor {
         public
         view
         virtual
-        returns (
-            uint256 againstVotes,
-            uint256 forVotes,
-            uint256 abstainVotes
-        )
+        returns (uint256 againstVotes, uint256 forVotes, uint256 abstainVotes)
     {
         ProposalVote storage proposalvote = _proposalVotes[proposalId];
         return (proposalvote.againstVotes, proposalvote.forVotes, proposalvote.abstainVotes);

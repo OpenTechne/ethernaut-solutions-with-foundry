@@ -38,7 +38,6 @@ import "../../../utils/Counters.sol";
  * only significant for the first transfer that immediately follows a snapshot for a particular account. Subsequent
  * transfers will have normal cost until the next snapshot, and so on.
  */
-
 abstract contract ERC20Snapshot is ERC20 {
     // Inspired by Jordi Baylina's MiniMeToken to record historical balances:
     // https://github.com/Giveth/minime/blob/ea04d950eea153a04c51fa510b068b9dded390cb/contracts/MiniMeToken.sol
@@ -120,11 +119,7 @@ abstract contract ERC20Snapshot is ERC20 {
 
     // Update balance and/or total supply snapshots before the values are modified. This is implemented
     // in the _beforeTokenTransfer hook, which is executed for _mint, _burn, and _transfer operations.
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual override {
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override {
         super._beforeTokenTransfer(from, to, amount);
 
         if (from == address(0)) {

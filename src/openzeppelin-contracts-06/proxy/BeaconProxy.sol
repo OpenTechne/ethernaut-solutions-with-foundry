@@ -66,13 +66,9 @@ contract BeaconProxy is Proxy {
      * - The implementation returned by `beacon` must be a contract.
      */
     function _setBeacon(address beacon, bytes memory data) internal virtual {
+        require(Address.isContract(beacon), "BeaconProxy: beacon is not a contract");
         require(
-            Address.isContract(beacon),
-            "BeaconProxy: beacon is not a contract"
-        );
-        require(
-            Address.isContract(IBeacon(beacon).implementation()),
-            "BeaconProxy: beacon implementation is not a contract"
+            Address.isContract(IBeacon(beacon).implementation()), "BeaconProxy: beacon implementation is not a contract"
         );
         bytes32 slot = _BEACON_SLOT;
 

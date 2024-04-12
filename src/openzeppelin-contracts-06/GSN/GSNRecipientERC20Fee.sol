@@ -61,13 +61,7 @@ contract GSNRecipientERC20Fee is GSNRecipient {
         uint256,
         bytes memory,
         uint256 maxPossibleCharge
-    )
-        public
-        view
-        virtual
-        override
-        returns (uint256, bytes memory)
-    {
+    ) public view virtual override returns (uint256, bytes memory) {
         if (token().balanceOf(from) < maxPossibleCharge) {
             return _rejectRelayedCall(uint256(GSNRecipientERC20FeeErrorCodes.INSUFFICIENT_BALANCE));
         }
@@ -116,9 +110,9 @@ contract GSNRecipientERC20Fee is GSNRecipient {
  */
 // solhint-disable-next-line contract-name-camelcase
 contract __unstable__ERC20Owned is ERC20, Ownable {
-    uint256 private constant _UINT256_MAX = 2**256 - 1;
+    uint256 private constant _UINT256_MAX = 2 ** 256 - 1;
 
-    constructor(string memory name, string memory symbol) public ERC20(name, symbol) { }
+    constructor(string memory name, string memory symbol) public ERC20(name, symbol) {}
 
     // The owner (GSNRecipientERC20Fee) can mint tokens
     function mint(address account, uint256 amount) public virtual onlyOwner {

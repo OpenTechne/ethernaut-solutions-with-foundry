@@ -49,12 +49,10 @@ interface IInbox is IMessageProvider {
         bytes calldata data
     ) external payable returns (uint256);
 
-    function sendL1FundedContractTransaction(
-        uint256 maxGas,
-        uint256 gasPriceBid,
-        address destAddr,
-        bytes calldata data
-    ) external payable returns (uint256);
+    function sendL1FundedContractTransaction(uint256 maxGas, uint256 gasPriceBid, address destAddr, bytes calldata data)
+        external
+        payable
+        returns (uint256);
 
     function createRetryableTicket(
         address destAddr,

@@ -38,5 +38,5 @@ contract AddressImpl {
     }
 
     // sendValue's tests require the contract to hold Ether
-    receive () external payable { }
+    receive() external payable {}
 }

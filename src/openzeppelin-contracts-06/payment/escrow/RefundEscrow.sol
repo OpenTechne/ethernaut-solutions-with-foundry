@@ -15,7 +15,11 @@ import "./ConditionalEscrow.sol";
  * with `RefundEscrow` will be made through the owner contract.
  */
 contract RefundEscrow is ConditionalEscrow {
-    enum State { Active, Refunding, Closed }
+    enum State {
+        Active,
+        Refunding,
+        Closed
+    }
 
     event RefundsClosed();
     event RefundsEnabled();
@@ -27,7 +31,7 @@ contract RefundEscrow is ConditionalEscrow {
      * @dev Constructor.
      * @param beneficiary_ The beneficiary of the deposits.
      */
-    constructor (address payable beneficiary_) public {
+    constructor(address payable beneficiary_) public {
         require(beneficiary_ != address(0), "RefundEscrow: beneficiary is the zero address");
         _beneficiary = beneficiary_;
         _state = State.Active;
@@ -69,7 +73,7 @@ contract RefundEscrow is ConditionalEscrow {
     /**
      * @dev Allows for refunds to take place, rejecting further deposits.
      */
-    function enableRefunds() public onlyOwner virtual {
+    function enableRefunds() public virtual onlyOwner {
         require(state() == State.Active, "RefundEscrow: can only enable refunds while active");
         _state = State.Refunding;
         emit RefundsEnabled();

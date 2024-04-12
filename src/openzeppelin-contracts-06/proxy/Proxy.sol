@@ -60,7 +60,7 @@ abstract contract Proxy {
      * @dev Fallback function that delegates calls to the address returned by `_implementation()`. Will run if no other
      * function in the contract matches the call data.
      */
-    fallback () external payable virtual {
+    fallback() external payable virtual {
         _fallback();
     }
 
@@ -68,7 +68,7 @@ abstract contract Proxy {
      * @dev Fallback function that delegates calls to the address returned by `_implementation()`. Will run if call data
      * is empty.
      */
-    receive () external payable virtual {
+    receive() external payable virtual {
         _fallback();
     }
 
@@ -78,6 +78,5 @@ abstract contract Proxy {
      *
      * If overriden should call `super._beforeFallback()`.
      */
-    function _beforeFallback() internal virtual {
-    }
+    function _beforeFallback() internal virtual {}
 }

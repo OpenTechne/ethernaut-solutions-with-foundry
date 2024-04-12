@@ -40,7 +40,7 @@ contract PaymentSplitter is Context {
      * All addresses in `payees` must be non-zero. Both arrays must have the same non-zero length, and there must be no
      * duplicates in `payees`.
      */
-    constructor (address[] memory payees, uint256[] memory shares_) public payable {
+    constructor(address[] memory payees, uint256[] memory shares_) public payable {
         // solhint-disable-next-line max-line-length
         require(payees.length == shares_.length, "PaymentSplitter: payees and shares length mismatch");
         require(payees.length > 0, "PaymentSplitter: no payees");
@@ -59,7 +59,7 @@ contract PaymentSplitter is Context {
      * https://solidity.readthedocs.io/en/latest/contracts.html#fallback-function[fallback
      * functions].
      */
-    receive () external payable virtual {
+    receive() external payable virtual {
         emit PaymentReceived(_msgSender(), msg.value);
     }
 

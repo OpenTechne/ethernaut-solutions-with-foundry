@@ -35,7 +35,7 @@ contract ERC20ReturnFalseMock is Context {
 }
 
 contract ERC20ReturnTrueMock is Context {
-    mapping (address => uint256) private _allowances;
+    mapping(address => uint256) private _allowances;
 
     // IERC20's functions are not pure, but these mock implementations are: to prevent Solidity from issuing warnings,
     // we write to a dummy state variable.
@@ -66,7 +66,7 @@ contract ERC20ReturnTrueMock is Context {
 }
 
 contract ERC20NoReturnMock is Context {
-    mapping (address => uint256) private _allowances;
+    mapping(address => uint256) private _allowances;
 
     // IERC20's functions are not pure, but these mock implementations are: to prevent Solidity from issuing warnings,
     // we write to a dummy state variable.
@@ -98,7 +98,7 @@ contract SafeERC20Wrapper is Context {
 
     IERC20 private _token;
 
-    constructor (IERC20 token) public {
+    constructor(IERC20 token) public {
         _token = token;
     }
 

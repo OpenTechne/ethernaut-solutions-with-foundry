@@ -46,7 +46,7 @@ abstract contract ERC20Snapshot is ERC20 {
         uint256[] values;
     }
 
-    mapping (address => Snapshots) private _accountBalanceSnapshots;
+    mapping(address => Snapshots) private _accountBalanceSnapshots;
     Snapshots private _totalSupplySnapshots;
 
     // Snapshot ids increase monotonically, with the first value being 1. An id of 0 is invalid.
@@ -98,36 +98,33 @@ abstract contract ERC20Snapshot is ERC20 {
     /**
      * @dev Retrieves the total supply at the time `snapshotId` was created.
      */
-    function totalSupplyAt(uint256 snapshotId) public view virtual returns(uint256) {
+    function totalSupplyAt(uint256 snapshotId) public view virtual returns (uint256) {
         (bool snapshotted, uint256 value) = _valueAt(snapshotId, _totalSupplySnapshots);
 
         return snapshotted ? value : totalSupply();
     }
 
-
     // Update balance and/or total supply snapshots before the values are modified. This is implemented
     // in the _beforeTokenTransfer hook, which is executed for _mint, _burn, and _transfer operations.
     function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override {
-      super._beforeTokenTransfer(from, to, amount);
+        super._beforeTokenTransfer(from, to, amount);
 
-      if (from == address(0)) {
-        // mint
-        _updateAccountSnapshot(to);
-        _updateTotalSupplySnapshot();
-      } else if (to == address(0)) {
-        // burn
-        _updateAccountSnapshot(from);
-        _updateTotalSupplySnapshot();
-      } else {
-        // transfer
-        _updateAccountSnapshot(from);
-        _updateAccountSnapshot(to);
-      }
+        if (from == address(0)) {
+            // mint
+            _updateAccountSnapshot(to);
+            _updateTotalSupplySnapshot();
+        } else if (to == address(0)) {
+            // burn
+            _updateAccountSnapshot(from);
+            _updateTotalSupplySnapshot();
+        } else {
+            // transfer
+            _updateAccountSnapshot(from);
+            _updateAccountSnapshot(to);
+        }
     }
 
-    function _valueAt(uint256 snapshotId, Snapshots storage snapshots)
-        private view returns (bool, uint256)
-    {
+    function _valueAt(uint256 snapshotId, Snapshots storage snapshots) private view returns (bool, uint256) {
         require(snapshotId > 0, "ERC20Snapshot: id is 0");
         // solhint-disable-next-line max-line-length
         require(snapshotId <= _currentSnapshotId.current(), "ERC20Snapshot: nonexistent id");

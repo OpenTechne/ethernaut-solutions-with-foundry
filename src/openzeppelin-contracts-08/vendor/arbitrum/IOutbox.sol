@@ -21,16 +21,10 @@ pragma solidity ^0.8.0;
 
 interface IOutbox {
     event OutboxEntryCreated(
-        uint256 indexed batchNum,
-        uint256 outboxEntryIndex,
-        bytes32 outputRoot,
-        uint256 numInBatch
+        uint256 indexed batchNum, uint256 outboxEntryIndex, bytes32 outputRoot, uint256 numInBatch
     );
     event OutBoxTransactionExecuted(
-        address indexed destAddr,
-        address indexed l2Sender,
-        uint256 indexed outboxEntryIndex,
-        uint256 transactionIndex
+        address indexed destAddr, address indexed l2Sender, uint256 indexed outboxEntryIndex, uint256 transactionIndex
     );
 
     function l2ToL1Sender() external view returns (address);

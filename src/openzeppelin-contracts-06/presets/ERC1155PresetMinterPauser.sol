@@ -96,9 +96,7 @@ contract ERC1155PresetMinterPauser is Context, AccessControl, ERC1155Burnable, E
         uint256[] memory ids,
         uint256[] memory amounts,
         bytes memory data
-    )
-        internal virtual override(ERC1155, ERC1155Pausable)
-    {
+    ) internal virtual override(ERC1155, ERC1155Pausable) {
         super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
     }
 }

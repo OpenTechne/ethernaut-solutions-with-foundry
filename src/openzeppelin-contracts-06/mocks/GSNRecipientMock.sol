@@ -11,28 +11,33 @@ contract GSNRecipientMock is ContextMock, GSNRecipient {
         _withdrawDeposits(amount, payee);
     }
 
-    function acceptRelayedCall(address, address, bytes calldata, uint256, uint256, uint256, uint256, bytes calldata, uint256)
-        external
-        view
-        override
-        returns (uint256, bytes memory)
-    {
+    function acceptRelayedCall(
+        address,
+        address,
+        bytes calldata,
+        uint256,
+        uint256,
+        uint256,
+        uint256,
+        bytes calldata,
+        uint256
+    ) external view override returns (uint256, bytes memory) {
         return (0, "");
     }
 
-    function _preRelayedCall(bytes memory) internal override returns (bytes32) { }
+    function _preRelayedCall(bytes memory) internal override returns (bytes32) {}
 
-    function _postRelayedCall(bytes memory, bool, uint256, bytes32) internal override { }
+    function _postRelayedCall(bytes memory, bool, uint256, bytes32) internal override {}
 
     function upgradeRelayHub(address newRelayHub) public {
         return _upgradeRelayHub(newRelayHub);
     }
 
-    function _msgSender() internal override(Context, GSNRecipient) view virtual returns (address payable) {
+    function _msgSender() internal view virtual override(Context, GSNRecipient) returns (address payable) {
         return GSNRecipient._msgSender();
     }
 
-    function _msgData() internal override(Context, GSNRecipient) view virtual returns (bytes memory) {
+    function _msgData() internal view virtual override(Context, GSNRecipient) returns (bytes memory) {
         return GSNRecipient._msgData();
     }
 }

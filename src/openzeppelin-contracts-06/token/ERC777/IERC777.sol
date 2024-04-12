@@ -162,12 +162,7 @@ interface IERC777 {
      * - `account` must have at least `amount` tokens.
      * - the caller must be an operator for `account`.
      */
-    function operatorBurn(
-        address account,
-        uint256 amount,
-        bytes calldata data,
-        bytes calldata operatorData
-    ) external;
+    function operatorBurn(address account, uint256 amount, bytes calldata data, bytes calldata operatorData) external;
 
     event Sent(
         address indexed operator,

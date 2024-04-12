@@ -16,7 +16,7 @@ abstract contract ERC20Capped is ERC20 {
      * @dev Sets the value of the `cap`. This value is immutable, it can only be
      * set once during construction.
      */
-    constructor (uint256 cap_) internal {
+    constructor(uint256 cap_) internal {
         require(cap_ > 0, "ERC20Capped: cap is 0");
         _cap = cap_;
     }
@@ -38,7 +38,8 @@ abstract contract ERC20Capped is ERC20 {
     function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override {
         super._beforeTokenTransfer(from, to, amount);
 
-        if (from == address(0)) { // When minting tokens
+        if (from == address(0)) {
+            // When minting tokens
             require(totalSupply().add(amount) <= cap(), "ERC20Capped: cap exceeded");
         }
     }

@@ -19,7 +19,11 @@ contract Create2Impl {
         return Create2.computeAddress(salt, codeHash);
     }
 
-    function computeAddressWithDeployer(bytes32 salt, bytes32 codeHash, address deployer) public pure returns (address) {
+    function computeAddressWithDeployer(bytes32 salt, bytes32 codeHash, address deployer)
+        public
+        pure
+        returns (address)
+    {
         return Create2.computeAddress(salt, codeHash, deployer);
     }
 

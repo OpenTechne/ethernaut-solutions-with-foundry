@@ -18,12 +18,7 @@ contract ERC777Mock is Context, ERC777 {
         _mint(initialHolder, initialBalance, "", "");
     }
 
-    function mintInternal (
-        address to,
-        uint256 amount,
-        bytes memory userData,
-        bytes memory operatorData
-    ) public {
+    function mintInternal(address to, uint256 amount, bytes memory userData, bytes memory operatorData) public {
         _mint(to, amount, userData, operatorData);
     }
 
