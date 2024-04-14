@@ -13,7 +13,7 @@ contract HigherOrderAttackScript is Script {
     function setUp() public {}
 
     function run() public {
-        IHigherOrder target = IHigherOrder(0x45db2C0F5F20F806FaDC1B8EDaA5DAe658129148); // Insert target target address
+        IHigherOrder target = IHigherOrder(0x0000000000000000000000000000000000000000); // Insert target target address
 
         vm.startBroadcast();
 
