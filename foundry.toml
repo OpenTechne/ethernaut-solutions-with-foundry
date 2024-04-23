@@ -14,5 +14,6 @@ optimism_goerli = "${OPTIMISM_GOERLI_RPC_URL}"
 optimism_sepolia = "${OPTIMISM_SEPOLIA_RPC_URL}"
 arbitrum_goerli = "${ARBITRUM_GOERLI_RPC_URL}"
 arbitrum_sepolia="${ARBITRUM_SEPOLIA_RPC_URL}"
+amoy = "${AMOY_RPC_URL}"
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
